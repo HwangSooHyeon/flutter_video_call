@@ -38,7 +38,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   agora_rtc_engine: 6.0.0
   permission_handler: 10.0.2
-  camera: 0.10.0+4
 
 dev_dependencies:
   flutter_test:
