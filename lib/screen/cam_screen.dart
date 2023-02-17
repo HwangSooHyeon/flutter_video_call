@@ -72,7 +72,7 @@ class _CamScreenState extends State<CamScreen> {
       await engine!.startPreview();
       await engine!.joinChannel(
         token: TEMP_TOKEN,
-        channelId: CANNEL_NAME,
+        channelId: CHANNEL_NAME,
         uid: 0,
         options: ChannelMediaOptions(),
       );
@@ -102,10 +102,52 @@ class _CamScreenState extends State<CamScreen> {
               child: CircularProgressIndicator(),
             );
           }
-          return Center(
-            child: Text('모든 권한이 있습니다!'),
+          return Stack(
+            children: [
+              renderMainView(),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  color: Colors.grey,
+                  height: 160,
+                  width: 120,
+                  child: renderSubView(),
+                ),
+              )
+            ],
           );
         },
+      ),
+    );
+  }
+
+  Widget renderSubView() {
+    if (uid != null) {
+      return AgoraVideoView(
+        controller: VideoViewController(
+          rtcEngine: engine!,
+          canvas: const VideoCanvas(uid: 0),
+        ),
+      );
+    }
+    return CircularProgressIndicator();
+  }
+
+  Widget renderMainView() {
+    if (otherUid != null) {
+      return AgoraVideoView(
+        controller: VideoViewController.remote(
+          rtcEngine: engine!,
+          canvas: VideoCanvas(uid: otherUid),
+          connection: const RtcConnection(channelId: CHANNEL_NAME),
+        ),
+      );
+    }
+
+    return const Center(
+      child: Text(
+        '다른 사용자가 입장할 때까지 대기해주세요.',
+        textAlign: TextAlign.center,
       ),
     );
   }
