@@ -102,18 +102,37 @@ class _CamScreenState extends State<CamScreen> {
               child: CircularProgressIndicator(),
             );
           }
-          return Stack(
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              renderMainView(),
-              Align(
-                alignment: Alignment.topLeft,
-                child: Container(
-                  color: Colors.grey,
-                  height: 160,
-                  width: 120,
-                  child: renderSubView(),
+              Expanded(
+                child: Stack(
+                  children: [
+                    renderMainView(),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Container(
+                        color: Colors.grey,
+                        height: 160,
+                        width: 120,
+                        child: renderSubView(),
+                      ),
+                    )
+                  ],
                 ),
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: ElevatedButton(
+                  onPressed: () async {
+                    if (engine != null) {
+                      await engine!.leaveChannel();
+                    }
+                    Navigator.of(context).pop();
+                  },
+                  child: Text('채널 나가기'),
+                ),
+              ),
             ],
           );
         },
