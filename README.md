@@ -1,16 +1,30 @@
 # flutter_video_call
 
-A new Flutter project.
+---
 
-## Getting Started
+화상통화 어플리케이션
 
-This project is a starting point for a Flutter application.
+## 💻 프로젝트 소개
 
-A few resources to get you started if this is your first Flutter project:
+--- 
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+아고라 API를 이용해 화상통화 기능을 구현한 프로젝트
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🕰️ 개발 환경
+
+---
+
+Language: Dart
+
+Framework: Flutter 3
+
+IDE: Android Studio
+
+## ⚙️ 주요 기능
+
+---
+
+### 어플리케이션 부분
+
+- CamScreen
+  - 아고라 API를 이용한 화상통화 기능 구현
